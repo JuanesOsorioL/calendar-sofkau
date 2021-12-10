@@ -6,6 +6,7 @@ import co.com.sofka.calendar.repositories.ProgramRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -35,11 +36,16 @@ public class SchedulerService {
         //TODO: trabajar el map reactivo y no deben colectar
         //var program = programRepository.findById(programId).block();
         var program = programRepository.findById(programId);
-        return Optional.ofNullable(program)
+       /* return Optional.ofNullable(program)
                 .map(this::getDurationOf)
                 .orElseThrow(() -> new RuntimeException("El programa academnico no existe"))
                 .map(toProgramDate(startDate, endDate, pivot[0], index))
                 .collect(Collectors.toList());
+    }*/
+        return program
+                .flatMapMany(programa-> Flux.fromStream(getDurationOf(programa)))
+                .map(toProgramDate(startDate, endDate, pivot[0], index))
+                .switchIfEmpty(Mono.error(new RuntimeException("El programa académico no existe")));
     }
 
     //No tocar
