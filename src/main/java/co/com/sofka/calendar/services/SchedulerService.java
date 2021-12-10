@@ -33,7 +33,8 @@ public class SchedulerService {
 
         //TODO: debe pasarlo a reactivo, no puede trabaja elementos bloqueantes
         //TODO: trabajar el map reactivo y no deben colectar
-        var program = programRepository.findById(programId).block();
+        //var program = programRepository.findById(programId).block();
+        var program = programRepository.findById(programId);
         return Optional.ofNullable(program)
                 .map(this::getDurationOf)
                 .orElseThrow(() -> new RuntimeException("El programa academnico no existe"))
