@@ -16,7 +16,7 @@ public class SchedulerServiceController {
     @Autowired
     private SchedulerService schedulerService;
 
-    @GetMapping(value = "/{id}")
+    @GetMapping("/{id}")
     public Flux<ProgramDate> get(@PathVariable("id") String id){
         var startDate = LocalDate.of(2022, 1, 1);
         return schedulerService.generateCalendar(id,startDate);
