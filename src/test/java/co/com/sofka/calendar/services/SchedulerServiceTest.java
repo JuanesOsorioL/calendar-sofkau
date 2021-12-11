@@ -47,60 +47,61 @@ class SchedulerServiceTest {
         //Assertions.assertEquals(13, response.size());//TODO: hacer de otro modo
         StepVerifier.create(response)
                 .expectNextMatches(programDate ->
-                        programDate.getDate().toString().equals("2020-01-03")
+                        programDate.getDate().toString().equals("2022-01-03")
                                 && programDate.getCategoryName().equals("Principios")
                 )
                 .expectNextMatches(programDate ->
-                        programDate.getDate().toString().equals("2020-01-04")
+                        programDate.getDate().toString().equals("2022-01-04")
                                 && programDate.getCategoryName().equals("Principios")
                 )
                 .expectNextMatches(programDate ->
-                        programDate.getDate().toString().equals("2020-01-05")
+                        programDate.getDate().toString().equals("2022-01-05")
                                 && programDate.getCategoryName().equals("Bases")
                 )
                 .expectNextMatches(programDate ->
-                        programDate.getDate().toString().equals("2020-01-06")
+                        programDate.getDate().toString().equals("2022-01-06")
                                 && programDate.getCategoryName().equals("Bases")
                 )
                 .expectNextMatches(programDate ->
-                        programDate.getDate().toString().equals("2020-01-07")
+                        programDate.getDate().toString().equals("2022-01-07")
                                 && programDate.getCategoryName().equals("Fundamentos")
                 )
                 .expectNextMatches(programDate ->
-                        programDate.getDate().toString().equals("2020-01-10")
+                        programDate.getDate().toString().equals("2022-01-10")
                                 && programDate.getCategoryName().equals("Fundamentos")
                 )
                 .expectNextMatches(programDate ->
-                        programDate.getDate().toString().equals("2020-01-11")
+                        programDate.getDate().toString().equals("2022-01-11")
                                 && programDate.getCategoryName().equals("Fundamentos")
                 )
                 .expectNextMatches(programDate ->
-                        programDate.getDate().toString().equals("2020-01-12")
+                        programDate.getDate().toString().equals("2022-01-12")
                                 && programDate.getCategoryName().equals("Fundamentos")
                 )
                 .expectNextMatches(programDate ->
-                        programDate.getDate().toString().equals("2020-01-13")
+                        programDate.getDate().toString().equals("2022-01-13")
                                 && programDate.getCategoryName().equals("Fundamentos avazandos")
                 )
                 .expectNextMatches(programDate ->
-                        programDate.getDate().toString().equals("2020-01-14")
+                        programDate.getDate().toString().equals("2022-01-14")
                                 && programDate.getCategoryName().equals("Fundamentos avazandos")
                 )
                 .expectNextMatches(programDate ->
-                        programDate.getDate().toString().equals("2020-01-17")
+                        programDate.getDate().toString().equals("2022-01-17")
                                 && programDate.getCategoryName().equals("Fundamentos avazandos")
                 )
                 .expectNextMatches(programDate ->
-                        programDate.getDate().toString().equals("2020-01-18")
+                        programDate.getDate().toString().equals("2022-01-18")
                                 && programDate.getCategoryName().equals("Fundamentos avazandos")
                 )
                 .expectNextMatches(programDate ->
-                        programDate.getDate().toString().equals("2020-01-19")
+                        programDate.getDate().toString().equals("2022-01-19")
                                 && programDate.getCategoryName().equals("Fundamentos avazandos")
                 )
                 .verifyComplete();
 
         //Assertions.assertEquals(getSnapResult(), new Gson().toJson(response));//TODO: hacer de otro modo
+        StepVerifier.create(response).expectNextCount(13).verifyComplete();
         Mockito.verify(repository).findById(programId);
     }
 
